@@ -1,0 +1,29 @@
+package com.java_bank.backend.dto;
+
+import jakarta.validation.constraints.*;
+import lombok.Data;
+
+/** Transfer (UPI / NEFT / IMPS) */
+@Data
+public class TransferRequest {
+
+    @NotBlank(message = "Beneficiary name is required")
+    private String beneficiaryName;
+
+    /** Account number, UPI ID, or mobile number */
+    @NotBlank(message = "Beneficiary account / UPI ID is required")
+    private String beneficiaryAccount;
+
+    @NotNull(message = "Amount is required")
+    @DecimalMin(value = "1.0", message = "Minimum transfer is ₹1")
+    private Double amount;
+
+    /**
+     * UPI_TRANSFER, NEFT_TRANSFER, or IMPS_TRANSFER.
+     * Optional — defaults to UPI_TRANSFER if not provided by the frontend.
+     */
+    private String mode = "UPI_TRANSFER";
+
+    @NotBlank(message = "PIN is required")
+    private String pin;
+}
