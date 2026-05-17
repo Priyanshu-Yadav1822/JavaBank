@@ -1,5 +1,3 @@
-package com.java_bank.atm;
-
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.geometry.*;
